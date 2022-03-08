@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org//dtd/mybatis-3-mapper.dtd">
+
+<!--<mapper namespace="com.yuanshan.dao.UserDao">-->
+<!--    <select id="findUserById" parameterType="int" resultType="User">-->
+<!--        select * from smbms_user where id=#(userId)-->
+<!--    </select>-->
+<!--</mapper>-->
+
+<!-- namespace:表示命名空间（完全限定名）表示是哪一个接口的实现类，必须写完整的路径 -->
+<mapper namespace="com.yuanshan.dao.UserDao">
+<!-- 查询方法：
+        select标签 id="接口中要实现的方法名"
+        parameterType:参数类型(mybatis默认的只有int，可写可不写（不用写）)
+        resultType:方法返回的数据类型（完全限定名【简化操作在mybatis.xml中进行配置】）
+        id=#{方法中的参数名} 【不能写成 *，一定要写列名】
+-->
+    <select id="findUserById" parameterType="int" resultType="User">
+        select
+        id,
+        userCode,
+        userName,
+        userPassword,
+        gender,
+        birthday,
+        phone,
+        address,
+        userRole,
+        createdBy,
+        creationDate,
+        modifyBy,
+        modifyDate
+        from smbms_user where id=#{userId}
+    </select>
+</mapper>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org//dtd/mybatis-3-config.dtd">
+
+
+<!--mybatis核心配置文件-数据库配置-->
+<configuration>
+    <!--读取数据库的属性文件-->
+    <properties resource="database.properties"></properties>
+
+    <!--打印日志文件 value=“STDOUT——LOGGING 表示打印sql语句”-->
+    <!--<settings>-->
+        <!--<setting name="logImpl" value="LOG4J"/>-->
+    <!--</settings>-->
+    <!---->
+
+    <!--简化包的名字（简化的是映射文件中实体类的路径）-->
+    <typeAliases>
+        <package name="com.yuanshan.pojo"></package>
+    </typeAliases>
+
+    <!--创建数据源 default:默认加载哪一个数据源-->
+    <!--可以创建多个数据源 id和default的属性值一致 表示获取哪一个数据库-->
+    <environments default="csDataSource">
+        <environment id="csDataSource">
+            <!--transaction:事务 采用JDBC的方式加载事务-->
+            <transactionManager type="JDBC"></transactionManager>
+            <dataSource type="POOLED">
+                <!--name：固定值；value：database.properties属性文件里面的四个参数值-->
+                <!--#：占位符；$：给什么，输出什么-->
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${user}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!--扫描mapper文件(读取实现类被mapper替换的文件)-->
+    <mappers>
+        <mapper resource="mappers/userMapper.xml"></mapper>
+    </mappers>
+
+</configuration>
