@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="dao.UserDao">
+    
+    <select id="findByGender" resultType="pojo.User">
+        select * from smbms_user where gender=#{gender}
+    </select>
+
+    <select id="findByGenderAndByName" resultType="pojo.User">
+        <!-- concat(#{userName}, '%') 字符串拼接 -->
+        select * from smbms_user where gender=#{gender} and userName like '${userName}%' 
+    </select>
+
+    <!-- 增删改默认返回 int 因此没有resultType属性 -->
+    <delete id="del">
+        delete from smbms_user where id=#{id}
+    </delete>
+
+    <insert id="insert">
+        insert into smbms_user(id, userCode, userName) values(#{id}, #{userCode}, #{userName})
+    </insert>
+
+    <update id="update">
+        update 
+    </update>
+</mapper>
